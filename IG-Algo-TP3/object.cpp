@@ -79,9 +79,8 @@ void Object::draw(Window & window, vec4 light)
 
 void Object::backface_culling(mat4 trans_matrix)
 {
-	vec4 vec = trans_matrix[3];
 	for (int i = 0; i < faces.size(); i++) {
-		if (dot(vec, faces[i].normal_transformed) < 0)
+		if (dot(faces[i].normal_transformed, vertices_transformed[faces[i].vertex_index[0]]) < 0)
 			faces[i].visible = true;
 		else
 			faces[i].visible = false;
